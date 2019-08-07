@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="" method="get">
+        <label>文:<input type="text" size="20" name="sentence"></label>
+        <input type="submit" value="送信">
+    </form>
+    {% if sentence %}
+        {{ sentence }}
+    {% endif %}
+</body>
+</html>
