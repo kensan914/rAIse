@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block page_title %}home{% endblock %}
+
+{% block content %}
+    <h1>rAIse</h1><br>
+      <h2>Registration</h2>
+      <form class="form-inline">
+          <div class="form-group">
+        <label for="exampleInputName2">pattern text</label>
+        <input type="text" class="form-control" id="exampleInputName2" placeholder="pattern">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail2">output text</label>
+        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="output">
+      </div>
+      <button type="submit" class="btn btn-default">Registrate</button>
+    </form>
+    <br>
+    <h2>Chat</h2>
+    <form>
+        <div class="form-group">
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+        </div>
+        <button type="submit" class="btn btn-default">Send</button>
+        <!-- 返答 -->
+    </form>
+{% endblock %}
