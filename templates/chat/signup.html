@@ -3,32 +3,48 @@
 {% block page_title %}signup{% endblock %}
 
 {% block content %}
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+   <div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+            <img src="{% static 'images/logo.png' %}" class="image">
+            <div class="content">新規ユーザー登録</div>
+        </h2>
+
+        <form action="" method="post" class="ui form">
+            <div class="ui stacked segment">
+                {# --- 全体エラーメッセージ --- #}
+                {% if form.non_field_errors %}
+                <div class="ui red message">
+                    <div class="header">エラー</div>
+                    <ul class="list">
+                        {% for non_field_error in form.non_field_errors %}
+                        <li>{{ non_field_error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% for field in form %}
+                <div class="field{% if field.errors %} error{% endif %}">
+                    {# --- 入力フィールド --- #}
+                    <div class="ui input{% if field.errors %} error{% endif %}">
+                        {{ field }}
+                    </div>
+                    {# --- 入力フィールドごとのエラーメッセージ（最初のエラーのみを表示） --- #}
+                    {% if field.errors %}
+                    <p class="red message">{{ field.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% csrf_token %}
+                <button type="submit" class="ui fluid teal submit button">ユーザー登録</button>
+            </div>
+        </form>
+
+        <div class="ui message">
+            <a href="{% url 'accounts:login' %}">ログインはこちら</a>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-        </div>
-      </div>
-      <div class="form-group">
-         <div class="col-sm-offset-2 col-sm-10">
-           <div class="checkbox">
-             <label>
-               <input type="checkbox"> Remember me
-             </label>
-           </div>
-         </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default">sign up</button>
-        </div>
-      </div>
-    </form>
+    </div>
+</div>
 {% endblock %}

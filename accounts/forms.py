@@ -13,7 +13,7 @@ class RegisterForm(forms.ModelForm):
         # 利用するモデルクラスを指定
         model = CustomUser
         # 利用するモデルのフィールドを指定
-        fields = ('username', 'email', 'password',)
+        fields = ('username', 'password',)
         # ウィジェットを上書き
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'ユーザー名'}),
@@ -30,18 +30,14 @@ class RegisterForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # フィールドの属性を書き換え
-        self.fields['email'].required = True
-        self.fields['email'].widget.attrs = {'placeholder': 'メールアドレス'}
+        # self.fields['email'].required = True
+        # self.fields['email'].widget.attrs = {'placeholder': 'メールアドレス'}
 
     def clean_username(self):
         value = self.cleaned_data['username']
         if len(value) < 3:
             raise forms.ValidationError(
                 '%(min_length)s文字以上で入力してください', params={'min_length': 3})
-        return value
-
-    def clean_email(self):
-        value = self.cleaned_data['email']
         return value
 
     def clean_password(self):
