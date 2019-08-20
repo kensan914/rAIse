@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}registrate_pattern{% endblock %}
+{% block user_name %}{{ user_name }}{% endblock %}
+
+{% block content %}
+      <h2>Registration</h2>
+      <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}
+          {% if form.errors %}
+            {{ form.non_field_errors }}
+          {% endif %}
+          <button type="button" class="btn btn-success" onclick="submit();">Registrate</button>
+          <br><br>
+          {% if success_message %}
+            {{ success_message }}
+        {% endif %}
+      </form>
+{% endblock %}

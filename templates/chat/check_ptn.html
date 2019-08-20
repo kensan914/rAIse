@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}check_ptn{% endblock %}
+{% block user_name %}{{ user_name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ user_name }} 's Pattern</h2>
+    <div class="col-5 ml-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>パターン</th>
+                    <th>返答</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for pattern in patterns %}
+                <tr>
+                    <td>{{ pattern.pattern_text }}</td>
+                    <td>{{ pattern.output_text }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
