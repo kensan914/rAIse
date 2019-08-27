@@ -1,10 +1,10 @@
 from django.shortcuts import render
-import sys
-import MeCab
+# import sys
+# import MeCab
 from .forms import PatternForm
 from .models import Pattern
 from chat.script.chat import chat_func
-from django.views.generic import FormView
+from django.views.generic import FormView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -62,3 +62,18 @@ class CheckptnView(LoginRequiredMixin, FormView):
 
 
 check_ptn = CheckptnView.as_view()
+
+
+class LabView(View):
+    def get(self, request):
+        return render(request, 'lab/lab.html', )
+
+    def post(self, request):
+        content = {
+            'message': chat_func(request, request.POST.get('message')),
+            'user_name': request.user,
+        }
+        return render(request, 'lab/lab.html', content)
+
+
+lab = LabView.as_view()

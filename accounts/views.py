@@ -5,23 +5,34 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 
 
+class HomeView(View):
+    def get(self, request):
+        return render(request, 'home/home.html')
+
+    def post(self, request):
+        return render(request, 'home/home.html')
+
+
+home = HomeView.as_view()
+
+
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('chat:chat')
-    template_name = 'accounts/signup.html'
+    template_name = '../templates/registration/signup.html'
 
 
 signup = SignUpView.as_view()
 
 
 class MyPageView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         content = {
             'user_name': request.user
         }
         return render(request, 'accounts/mypage.html', content)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         return render(request, 'accounts/mypage.html')
 
 

@@ -1,28 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'base_notloggedin.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}ログイン{% endblock %}
+
+{% block footer_option %}
+        style="position:absolute; bottom:0; width:100%;"
+{% endblock %}
 
 {% block content %}
-<h1>Login</h1>
-<section class="common-form">
-    {% if form.errors %}
-    <p class="error-msg">Your username and password didn't match. Please try again.</p>
-    {% endif %}
-
-    {% if next %}
-    {% if user.is_authenticated %}
-    <p class="error-msg">Your account doesn't have access to this page. To proceed,
-        please login with an account that has access.</p>
-    {% else %}
-    <p class="error-msg">Please login to see this page.</p>
-    {% endif %}
-    {% endif %}
-
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Login</button>
-        <input type="hidden" name="next" value="{{ next }}"/>
-    </form>
-</section>
+        <div style="height: 50%;width: 100%;margin: 0 auto;max-height: 500px;max-width: 500px;">
+            <section class="common-form">
+                    {% if form.errors %}
+                        <p class="error-msg">Your username and password didn't match. Please try again.</p>
+                    {% endif %}
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                            <p class="error-msg">Your account doesn't have access to this page. To proceed,please login with an account that has access.</p>
+                        {% else %}
+                            <p class="error-msg">Please login to see this page.</p>
+                        {% endif %}
+                    {% endif %}
+                    <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success pull-center" >Login</button>
+                        <input type="hidden" name="next" value="{{ next }}"/>
+                    </form>
+            </section>
+        </div>
 {% endblock %}

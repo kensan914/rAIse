@@ -1,0 +1,19 @@
+{% extends 'base_notloggedin.html' %}
+
+{% block title %}会員登録{% endblock %}
+
+{% block footer_option %}
+        style="position:absolute; bottom:0; width:100%;"
+{% endblock %}
+
+{% block content %}
+        <div style="width: 100%;margin: 0 auto;max-width: 500px;">
+            <section class="common-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success">登録</button>
+                    </form>
+            </section>
+        </div>
+{% endblock %}

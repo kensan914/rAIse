@@ -129,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'accounts:mypage'
+LOGIN_REDIRECT_URL = 'chat:lab'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
