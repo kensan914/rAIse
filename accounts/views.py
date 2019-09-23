@@ -18,7 +18,7 @@ home = HomeView.as_view()
 
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('chat:chat')
+    success_url = reverse_lazy('chat:lab')
     template_name = '../templates/registration/signup.html'
 
 

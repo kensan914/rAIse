@@ -85,6 +85,7 @@ DATABASES = {
         'NAME': 'raise',
         'USER': 'root',
         # 'PASSWORD': 'gin-TK46raise',
+        'PASSWORD': 'gin-TK46',
         'HOST': 'localhost',
         'PORT': '3306',
     }
